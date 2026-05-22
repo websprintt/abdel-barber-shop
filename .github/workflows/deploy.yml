@@ -3,17 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ "main" ]
-
-  # Permite ejecutar este workflow manualmente desde la pestaña Actions
   workflow_dispatch:
 
-# Configura los permisos del GITHUB_TOKEN para permitir el despliegue en GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Evita que se acumulen despliegues simultáneos
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -22,7 +18,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,10 +28,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # Eliminamos la línea de 'cache' para evitar conflictos con el archivo subido
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install # <--- Cambiado de 'npm ci' a 'npm install'
 
       - name: Build
         run: npm run build
@@ -43,7 +39,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Vite por defecto compila todo dentro de la carpeta 'dist'
           path: './dist'
 
       - name: Deploy to GitHub Pages
