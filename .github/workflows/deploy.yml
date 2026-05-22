@@ -1,41 +1,51 @@
-# GitHub Actions workflow to build and deploy to GitHub Pages
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main # O el nombre de tu rama principal (ej: master, main)
+    branches: [ "main" ]
+
+  # Permite ejecutar este workflow manualmente desde la pestaña Actions
   workflow_dispatch:
 
+# Configura los permisos del GITHUB_TOKEN para permitir el despliegue en GitHub Pages
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita que se acumulen despliegues simultáneos
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    concurrency: ci-${{ github.ref }}
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps: deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install and Build 🔧
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-size: 's'
           node-version: 20
           cache: 'npm'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build static files
+      - name: Build
         run: npm run build
 
-      - name: SPA Route Fallback Setup (Copy index.html to 404.html)
-        run: cp dist/index.html dist/404.html
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist # The folder the action should deploy.
-          branch: gh-pages # The branch the action should deploy to.
+          # Vite por defecto compila todo dentro de la carpeta 'dist'
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
