@@ -1,0 +1,6 @@
+{
+  "name": "Abdel Barber Shop",
+  "description": "La barbería mejor valorada en Ciudad Real para cortes premium, degradados/fades y arreglo de barba. Reserva tu cita online por WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
