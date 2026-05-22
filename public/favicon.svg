@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Rounded background card with the premium brand gold (#d4af37) -->
+  <rect width="512" height="512" rx="110" fill="#d4af37" />
+  
+  <!-- Beautifully styled black barber shears in the center -->
+  <g transform="translate(256, 250) scale(1.65)">
+    <!-- Scissors Ring Handles & Shafts -->
+    <path d="M -22,46 C -34,46 -43,37 -43,24 C -43,11 -34,2 -22,2 C -11,2 -2,11 -2,24 C -2,37 -11,46 -22,46 Z M -22,10 C -29,10 -35,16 -35,24 C -35,32 -29,38 -22,38 C -15,38 -9,32 -9,24 C -9,16 -15,10 -22,10 Z" fill="#0a0a0c" />
+    <path d="M 22,46 C 34,46 43,37 43,24 C 43,11 34,2 22,2 C 11,2 2,11 2,24 C 2,37 11,46 22,46 Z M 22,10 C 29,10 35,16 35,24 C 35,32 -29,38 22,38 C 15,38 9,32 9,24 C 9,16 15,10 22,10 Z" fill="#0a0a0c" />
+    
+    <!-- Finger rest (Tang) on the left handle -->
+    <path d="M -39,36 C -46,42 -52,51 -55,60 C -53,55 -45,45 -37,40 Z" fill="#0a0a0c" />
+    
+    <!-- Scissors shafts that join at the pivot -->
+    <path d="M -16,13 L -5,-12 L -1,-12 L -12,13 Z" fill="#0a0a0c" />
+    <path d="M 16,13 L 5,-12 L 1,-12 L 12,13 Z" fill="#0a0a0c" />
+    
+    <!-- Blades going upwards and overlapping elegantly -->
+    <path d="M -5,-11 L -1.5,-75 L -1,-11 Z" fill="#0a0a0c" />
+    <path d="M 5,-11 L 1.5,-75 L 1,-11 Z" fill="#0a0a0c" />
+    
+    <!-- Central pivot screw in contrasting gold color -->
+    <circle cx="0" cy="-11" r="3.5" fill="#d4af37" stroke="#0a0a0c" stroke-width="1.8" />
+  </g>
+</svg>
